@@ -1,4 +1,4 @@
-import { getRandomAvatarConfig } from './components/avatar.js';
+import { getRandomAvatarConfig } from './components/avatar.js?v=3';
 import { playSound } from './components/sound.js';
 import {
     renderRegistrationScreen,
@@ -9,7 +9,7 @@ import {
     renderReviewScreen,
     renderScoreboardScreen,
     updateTimerUI
-} from './components/screens.js';
+} from './components/screens.js?v=3';
 class ConfettiEffect {
     constructor() {
         this.canvas = null;

@@ -1,4 +1,4 @@
-import { renderAvatarSvg, BG_COLORS, BODY_COLORS, EYE_OPTIONS, MOUTH_OPTIONS, SHIRT_OPTIONS, ACCESSORY_OPTIONS, EFFECT_OPTIONS } from './avatar.js';
+import { renderAvatarSvg, BG_COLORS, BODY_COLORS, EYE_OPTIONS, MOUTH_OPTIONS, SHIRT_OPTIONS, ACCESSORY_OPTIONS, EFFECT_OPTIONS } from './avatar.js?v=3';
 import { playSound } from './sound.js';
 
 // Helper to escape HTML to prevent XSS in chat/names
