@@ -314,6 +314,11 @@ function handleServerMessage(msg) {
             showToast(payload);
             break;
             
+        case "kicked":
+            sessionStorage.setItem("kick_message", payload);
+            window.location.href = window.location.origin + window.location.pathname;
+            break;
+            
         case "timer_update":
             // Direct timer sync
             startClientTimer(payload.remaining, lobby_state ? lobby_state.phase : "");
@@ -333,7 +338,9 @@ function transitionToScreen(phase) {
             // onSettingsChange
             (timeVal) => sendMsg("update_settings", { challenge_time: timeVal }),
             // onCopyLink
-            copyLobbyLink
+            copyLobbyLink,
+            // onKick
+            (targetId) => sendMsg("kick_player", { player_id: targetId })
         );
     } else if (phase === "THEME_VOTING") {
         renderThemeVotingScreen(
@@ -393,6 +400,12 @@ function transitionToScreen(phase) {
 
 // Initial Entrypoint Setup
 function init() {
+    const kickMsg = sessionStorage.getItem("kick_message");
+    if (kickMsg) {
+        showToast(kickMsg);
+        sessionStorage.removeItem("kick_message");
+    }
+
     // Render initial registration form
     renderRegistrationScreen(
         appContainer,

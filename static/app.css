@@ -835,3 +835,24 @@ h3 { font-size: 1.25rem; color: var(--text-dark); }
 }
 .status-badge.valid   { background-color: var(--success-color); color: #fff; }
 .status-badge.invalid { background-color: var(--danger-color);  color: #fff; }
+
+/* Kick Button */
+.kick-btn {
+    background-color: #fdf0f2;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--danger-color);
+    cursor: pointer;
+    font-weight: 900;
+    font-size: 0.75rem;
+    padding: 3px 7px;
+    transition: transform var(--transition-speed), background-color var(--transition-speed), color var(--transition-speed);
+}
+.kick-btn:hover {
+    transform: scale(1.1);
+    background-color: var(--danger-color);
+    color: #ffffff;
+}
+.kick-btn:active {
+    transform: scale(0.9);
+}

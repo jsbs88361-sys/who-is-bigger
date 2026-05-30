@@ -343,36 +343,34 @@ def leave_lobby(player_id, lobby_code):
     
     if player_id in lobby["players"]:
         player = lobby["players"][player_id]
-        player["socket"] = None # Mark as disconnected
         
-        # Check if all players are disconnected
-        all_disconnected = all(p["socket"] is None for p in lobby["players"].values())
-        if all_disconnected:
+        # Completely delete the player from the lobby
+        del lobby["players"][player_id]
+        
+        # Check if all players are gone
+        if len(lobby["players"]) == 0:
             cancel_lobby_timer(lobby)
             del LOBBIES[lobby_code]
             print(f"Lobby {lobby_code} deleted (all players left/disconnected).")
         else:
             # If the leaving player was host, assign a new host
             if player["is_host"]:
-                player["is_host"] = False
-                # Find first connected player to make host
+                # Find first player to make host
                 for p in lobby["players"].values():
-                    if p["socket"] is not None:
-                        p["is_host"] = True
-                        break
+                    p["is_host"] = True
+                    break
             
             # If currently in game, check if we need to adjust game state
-            # e.g., if player order includes this player, we might need to skip or end turn
             phase = lobby["state"]["phase"]
             
+            # Remove from players_order
+            if player_id in lobby["state"]["players_order"]:
+                lobby["state"]["players_order"].remove(player_id)
+                
             if phase == "BIDDING":
                 if lobby["state"]["active_player_id"] == player_id:
                     # Skip their turn
                     cancel_lobby_timer(lobby)
-                    # Remove from order for this round if disconnected
-                    if player_id in lobby["state"]["players_order"]:
-                        lobby["state"]["players_order"].remove(player_id)
-                    
                     if len(lobby["state"]["players_order"]) > 0:
                         transition_to_bidding(lobby)
                     else:
@@ -756,6 +754,33 @@ class GameWebSocketHandler(tornado.websocket.WebSocketHandler):
             lobby["state"]["players_order"] = []
             
             broadcast_to_lobby(lobby, "state_update", get_lobby_state(lobby))
+            
+        elif msg_type == "kick_player":
+            if not self.lobby_code or self.lobby_code not in LOBBIES:
+                return
+            lobby = LOBBIES[self.lobby_code]
+            player = lobby["players"].get(self.player_id)
+            if not player or not player["is_host"]:
+                return
+                
+            target_id = payload.get("player_id")
+            if target_id == self.player_id:
+                return
+                
+            if target_id in lobby["players"]:
+                target_player = lobby["players"][target_id]
+                target_socket = target_player["socket"]
+                if target_socket:
+                    try:
+                        target_socket.write_message(json.dumps({
+                            "type": "kicked",
+                            "payload": "Вы были исключены из комнаты хозяином"
+                        }))
+                        target_socket.close()
+                    except Exception:
+                        pass
+                else:
+                    leave_lobby(target_id, self.lobby_code)
 
     def on_close(self):
         print(f"WS Close: {self.player_id}")

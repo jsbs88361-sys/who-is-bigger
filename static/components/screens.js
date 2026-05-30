@@ -174,7 +174,7 @@ export function renderRegistrationScreen(container, avatarConfig, onRegister) {
 // -------------------------------------------------------------
 // 2. LOBBY SCREEN
 // -------------------------------------------------------------
-export function renderLobbyScreen(container, lobbyState, player_id, onStartGame, onSettingsChange, onCopyLink) {
+export function renderLobbyScreen(container, lobbyState, player_id, onStartGame, onSettingsChange, onCopyLink, onKick) {
     const isHost = lobbyState.players.find(p => p.id === player_id)?.is_host;
     
     // Sort players so Host is at the top
@@ -191,8 +191,11 @@ export function renderLobbyScreen(container, lobbyState, player_id, onStartGame,
                     </div>
                     <span class="player-name">${escapeHtml(p.name)}</span>
                 </div>
-                <div>
+                <div style="display: flex; align-items: center; gap: 8px;">
                     ${p.is_host ? '<span class="badge host-badge">Хозяин</span>' : '<span class="badge" style="background-color:#4a457a;">Игрок</span>'}
+                    ${isHost && p.id !== player_id ? `
+                        <button class="kick-btn" data-id="${p.id}" title="Исключить">❌</button>
+                    ` : ''}
                 </div>
             </div>
         `;
@@ -284,6 +287,16 @@ export function renderLobbyScreen(container, lobbyState, player_id, onStartGame,
                 onStartGame();
             };
         }
+
+        container.querySelectorAll('.kick-btn').forEach(btn => {
+            btn.onclick = () => {
+                playSound.click();
+                const targetId = btn.dataset.id;
+                if (confirm("Вы уверены, что хотите исключить этого игрока?")) {
+                    onKick(targetId);
+                }
+            };
+        });
     }
 }
 
