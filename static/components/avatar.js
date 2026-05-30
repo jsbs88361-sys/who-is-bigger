@@ -53,6 +53,33 @@ export const EYE_OPTIONS = [
     `<g>
         <path d="M33 45 a5 5 0 1 0 10 0 a4 4 0 1 0 -8 0 a3 3 0 1 0 6 0" fill="none" stroke="#2c2d42" stroke-width="3" stroke-linecap="round" />
         <path d="M57 45 a5 5 0 1 0 10 0 a4 4 0 1 0 -8 0 a3 3 0 1 0 6 0" fill="none" stroke="#2c2d42" stroke-width="3" stroke-linecap="round" />
+     </g>`,
+
+    // 6: Cyborg Eye
+    `<g>
+        <circle cx="39" cy="45" r="5" fill="#2c2d42" />
+        <circle cx="37.5" cy="43.5" r="1.5" fill="#fff" />
+        <circle cx="61" cy="45" r="7" fill="none" stroke="#ef476f" stroke-width="3.5" />
+        <circle cx="61" cy="45" r="3" fill="#ef476f" />
+        <path d="M68 45 h6" stroke="#ef476f" stroke-width="2" />
+     </g>`,
+
+    // 7: Laser Eyes
+    `<g>
+        <circle cx="39" cy="45" r="5.5" fill="#ef476f" stroke="#2c2d42" stroke-width="2" />
+        <circle cx="61" cy="45" r="5.5" fill="#ef476f" stroke="#2c2d42" stroke-width="2" />
+        <line x1="39" y1="45" x2="31" y2="85" stroke="#ef476f" stroke-width="4.5" opacity="0.8" stroke-linecap="round" />
+        <line x1="39" y1="45" x2="31" y2="85" stroke="#fff" stroke-width="1.5" stroke-linecap="round" />
+        <line x1="61" y1="45" x2="69" y2="85" stroke="#ef476f" stroke-width="4.5" opacity="0.8" stroke-linecap="round" />
+        <line x1="61" y1="45" x2="69" y2="85" stroke="#fff" stroke-width="1.5" stroke-linecap="round" />
+     </g>`,
+
+    // 8: Anime Tears/Crying
+    `<g>
+        <path d="M34 47 q5 -7 10 0" fill="none" stroke="#2c2d42" stroke-width="4" stroke-linecap="round" />
+        <path d="M56 47 q5 -7 10 0" fill="none" stroke="#2c2d42" stroke-width="4" stroke-linecap="round" />
+        <path d="M36 49 q0 8 -4 14" fill="none" stroke="#9bf6ff" stroke-width="3" stroke-linecap="round" />
+        <path d="M64 49 q0 8 4 14" fill="none" stroke="#9bf6ff" stroke-width="3" stroke-linecap="round" />
      </g>`
 ];
 
@@ -86,7 +113,64 @@ export const MOUTH_OPTIONS = [
     `<line x1="43" y1="62" x2="57" y2="62" stroke="#2c2d42" stroke-width="4.5" stroke-linecap="round" />`,
     
     // 5: Surprised / Screaming O
-    `<ellipse cx="50" cy="62" rx="6" ry="9" fill="#800f2f" stroke="#2c2d42" stroke-width="4" />`
+    `<ellipse cx="50" cy="62" rx="6" ry="9" fill="#800f2f" stroke="#2c2d42" stroke-width="4" />`,
+
+    // 6: Vampire Fangs
+    `<g>
+        <path d="M39 58 q11 10 22 0" fill="none" stroke="#2c2d42" stroke-width="4.5" stroke-linecap="round" />
+        <path d="M43 59 l1 5 l3 -5 z" fill="#fff" stroke="#2c2d42" stroke-width="1" />
+        <path d="M54 59 l-1 5 l-3 -5 z" fill="#fff" stroke="#2c2d42" stroke-width="1" />
+     </g>`,
+
+    // 7: Bubblegum Bubble
+    `<g>
+        <path d="M42 62 q8 5 16 0" fill="none" stroke="#2c2d42" stroke-width="4.5" stroke-linecap="round" />
+        <circle cx="50" cy="65" r="11" fill="#ffccd5" stroke="#ff85a2" stroke-width="3" />
+        <ellipse cx="46" cy="61" rx="3.5" ry="1.5" fill="#fff" transform="rotate(-20 46 61)" />
+     </g>`,
+
+    // 8: Cat Mouth
+    `<path d="M43 62 q4 5 7 0 q3 5 7 0" fill="none" stroke="#2c2d42" stroke-width="4" stroke-linecap="round" opacity="0.9" />`
+];
+
+export const SHIRT_OPTIONS = [
+    // 0: None
+    ``,
+    
+    // 1: Bow Tie (elegant black bow tie)
+    `<g>
+        <path d="M42 66 L58 74 L58 66 L42 74 Z" fill="#2c2d42" />
+        <circle cx="50" cy="70" r="3.5" fill="#ef476f" />
+     </g>`,
+     
+    // 2: Necktie (red necktie)
+    `<g>
+        <path d="M47 66 L53 66 L55 82 L50 87 L45 82 Z" fill="#ef476f" stroke="#2c2d42" stroke-width="2" />
+        <circle cx="50" cy="66" r="3.5" fill="#2c2d42" />
+     </g>`,
+     
+    // 3: Thick Gold Chain (hip-hop chain)
+    `<g>
+        <path d="M30 60 Q50 78 70 60 Q50 82 30 60" fill="none" stroke="#ffd166" stroke-width="4.5" stroke-linecap="round" />
+        <path d="M47 75 L53 75 L50 81 Z" fill="#ffd166" />
+     </g>`,
+     
+    // 4: Superhero Star (yellow star emblem)
+    `<g>
+        <path d="M50 68 l2 4 l4 1 l-3 3 l1 4 l-4 -2 l-4 2 l1 -4 l-3 -3 l4 -1 z" fill="#ffd166" stroke="#2c2d42" stroke-width="2" />
+     </g>`,
+     
+    // 5: Hoodie Strings
+    `<g>
+        <path d="M46 66 L43 78 M54 66 L57 78" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+        <circle cx="43" cy="78" r="2.5" fill="#2c2d42" />
+        <circle cx="57" cy="78" r="2.5" fill="#2c2d42" />
+     </g>`,
+     
+    // 6: Sailor Collar (blue stripes)
+    `<g>
+        <path d="M26 66 Q50 82 74 66 L68 82 Q50 86 32 82 Z" fill="#118ab2" stroke="#2c2d42" stroke-width="2" />
+     </g>`
 ];
 
 export const ACCESSORY_OPTIONS = [
@@ -238,6 +322,7 @@ export function getRandomAvatarConfig() {
         bodyColor: BODY_COLORS[Math.floor(Math.random() * BODY_COLORS.length)],
         eyes: Math.floor(Math.random() * EYE_OPTIONS.length),
         mouth: Math.floor(Math.random() * MOUTH_OPTIONS.length),
+        shirt: Math.floor(Math.random() * SHIRT_OPTIONS.length),
         accessory: Math.floor(Math.random() * ACCESSORY_OPTIONS.length)
     };
 }
@@ -247,6 +332,7 @@ export function renderAvatarSvg(config) {
     const body = config.bodyColor || "#F4A261";
     const eyes = EYE_OPTIONS[config.eyes] || EYE_OPTIONS[0];
     const mouth = MOUTH_OPTIONS[config.mouth] || MOUTH_OPTIONS[0];
+    const shirt = SHIRT_OPTIONS[config.shirt || 0] || SHIRT_OPTIONS[0];
     const accessory = ACCESSORY_OPTIONS[config.accessory] || ACCESSORY_OPTIONS[0];
 
     return `
@@ -285,6 +371,9 @@ export function renderAvatarSvg(config) {
         <!-- Head / Body Base with 3D gradient -->
         <circle cx="50" cy="52" r="32" fill="url(#body-grad-${body.replace('#','')})" stroke="#2c2d42" stroke-width="4.5" />
         
+        <!-- Shirt / Clothes decoration -->
+        ${shirt}
+
         <!-- White Glossy Reflection Highlight -->
         <ellipse cx="36" cy="34" rx="10" ry="5" fill="#ffffff" opacity="0.3" transform="rotate(-25 36 34)" />
 

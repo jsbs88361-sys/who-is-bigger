@@ -1,4 +1,4 @@
-import { renderAvatarSvg, BG_COLORS, BODY_COLORS, EYE_OPTIONS, MOUTH_OPTIONS, ACCESSORY_OPTIONS } from './avatar.js';
+import { renderAvatarSvg, BG_COLORS, BODY_COLORS, EYE_OPTIONS, MOUTH_OPTIONS, SHIRT_OPTIONS, ACCESSORY_OPTIONS } from './avatar.js';
 import { playSound } from './sound.js';
 
 // Helper to escape HTML to prevent XSS in chat/names
@@ -41,6 +41,11 @@ export function updateTimerUI(secondsRemaining, totalSeconds) {
 // 1. REGISTRATION SCREEN
 // -------------------------------------------------------------
 export function renderRegistrationScreen(container, avatarConfig, onRegister) {
+    // Default shirt if not set
+    if (avatarConfig.shirt === undefined) {
+        avatarConfig.shirt = 0;
+    }
+
     container.innerHTML = `
         <div class="game-title-logo bounce">КТО БОЛЬШЕ?</div>
         <div class="cartoon-card neon-glow" style="max-width: 500px; margin: 0 auto;">
@@ -72,6 +77,11 @@ export function renderRegistrationScreen(container, avatarConfig, onRegister) {
                             <button class="creator-arrow-btn" id="mouth-prev">&lt;</button>
                             <span>РОТ</span>
                             <button class="creator-arrow-btn" id="mouth-next">&gt;</button>
+                        </div>
+                        <div class="creator-row">
+                            <button class="creator-arrow-btn" id="shirt-prev">&lt;</button>
+                            <span>ОДЕЖДА</span>
+                            <button class="creator-arrow-btn" id="shirt-next">&gt;</button>
                         </div>
                         <div class="creator-row">
                             <button class="creator-arrow-btn" id="acc-prev">&lt;</button>
@@ -148,6 +158,9 @@ export function renderRegistrationScreen(container, avatarConfig, onRegister) {
     container.querySelector('#mouth-prev').onclick = () => { playSound.click(); avatarConfig.mouth = cycleIndex(MOUTH_OPTIONS.length, avatarConfig.mouth, -1); updatePreview(); };
     container.querySelector('#mouth-next').onclick = () => { playSound.click(); avatarConfig.mouth = cycleIndex(MOUTH_OPTIONS.length, avatarConfig.mouth, 1); updatePreview(); };
 
+    container.querySelector('#shirt-prev').onclick = () => { playSound.click(); avatarConfig.shirt = cycleIndex(SHIRT_OPTIONS.length, avatarConfig.shirt || 0, -1); updatePreview(); };
+    container.querySelector('#shirt-next').onclick = () => { playSound.click(); avatarConfig.shirt = cycleIndex(SHIRT_OPTIONS.length, avatarConfig.shirt || 0, 1); updatePreview(); };
+
     container.querySelector('#acc-prev').onclick = () => { playSound.click(); avatarConfig.accessory = cycleIndex(ACCESSORY_OPTIONS.length, avatarConfig.accessory, -1); updatePreview(); };
     container.querySelector('#acc-next').onclick = () => { playSound.click(); avatarConfig.accessory = cycleIndex(ACCESSORY_OPTIONS.length, avatarConfig.accessory, 1); updatePreview(); };
 
@@ -158,6 +171,7 @@ export function renderRegistrationScreen(container, avatarConfig, onRegister) {
             bodyColor: BODY_COLORS[Math.floor(Math.random() * BODY_COLORS.length)],
             eyes: Math.floor(Math.random() * EYE_OPTIONS.length),
             mouth: Math.floor(Math.random() * MOUTH_OPTIONS.length),
+            shirt: Math.floor(Math.random() * SHIRT_OPTIONS.length),
             accessory: Math.floor(Math.random() * ACCESSORY_OPTIONS.length)
         });
         updatePreview();
