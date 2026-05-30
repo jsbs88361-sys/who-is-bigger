@@ -336,7 +336,7 @@ function transitionToScreen(phase) {
             // onStartGame
             () => sendMsg("start_game"),
             // onSettingsChange
-            (timeVal) => sendMsg("update_settings", { challenge_time: timeVal }),
+            (timeVal, bonusVal) => sendMsg("update_settings", { challenge_time: timeVal, correct_answer_bonus: bonusVal }),
             // onCopyLink
             copyLobbyLink,
             // onKick

@@ -27,7 +27,7 @@ export function updateTimerUI(secondsRemaining, totalSeconds) {
     
     if (bar && totalSeconds > 0) {
         const percentage = (secondsRemaining / totalSeconds) * 100;
-        bar.style.width = `${percentage}%`;
+        bar.style.width = `${Math.min(100, Math.max(0, percentage))}%`;
         
         if (secondsRemaining <= 5) {
             bar.classList.add('warning');
@@ -232,6 +232,13 @@ export function renderLobbyScreen(container, lobbyState, player_id, onStartGame,
         timeOptionsHtml += `<option value="${t.val}" ${isSelected ? "selected" : ""}>${t.label}</option>`;
     });
 
+    const bonusVal = lobbyState.settings.correct_answer_bonus || 0;
+    let bonusOptionsHtml = "";
+    for (let b = 0; b <= 10; b++) {
+        const isSelected = bonusVal === b;
+        bonusOptionsHtml += `<option value="${b}" ${isSelected ? "selected" : ""}>+${b} сек</option>`;
+    }
+
     container.innerHTML = `
         <div class="cartoon-card">
             <div class="lobby-header">
@@ -265,6 +272,21 @@ export function renderLobbyScreen(container, lobbyState, player_id, onStartGame,
                         `}
                     </div>
                 </div>
+                
+                <div class="settings-row" style="margin-top: 15px;">
+                    <span class="settings-label">➕ Доп. время за верный ответ:</span>
+                    <div>
+                        ${isHost ? `
+                            <select class="cartoon-input" id="bonus-select" style="width: auto; min-width: 140px; padding: 6px 12px; font-size: 1rem;">
+                                ${bonusOptionsHtml}
+                            </select>
+                        ` : `
+                            <span class="badge score-badge" style="font-size: 1rem; padding: 6px 12px;">
+                                +${bonusVal} сек
+                            </span>
+                        `}
+                    </div>
+                </div>
             </div>
             
             <div class="flex-center">
@@ -289,10 +311,15 @@ export function renderLobbyScreen(container, lobbyState, player_id, onStartGame,
 
     if (isHost) {
         const timeSelect = container.querySelector('#time-select');
-        timeSelect.onchange = () => {
+        const bonusSelect = container.querySelector('#bonus-select');
+        
+        const handleSettingsChange = () => {
             playSound.click();
-            onSettingsChange(parseInt(timeSelect.value));
+            onSettingsChange(parseInt(timeSelect.value), parseInt(bonusSelect.value));
         };
+        
+        if (timeSelect) timeSelect.onchange = handleSettingsChange;
+        if (bonusSelect) bonusSelect.onchange = handleSettingsChange;
         
         const btnStart = container.querySelector('#btn-start-game');
         if (btnStart) {

@@ -416,6 +416,7 @@ def cancel_lobby_timer(lobby):
     if lobby["timer_handle"]:
         tornado.ioloop.IOLoop.current().remove_timeout(lobby["timer_handle"])
         lobby["timer_handle"] = None
+    lobby["timer_callback"] = None
     lobby["state"]["timer_end"] = 0
 
 def start_lobby_timer(lobby, duration_seconds, callback):
@@ -423,9 +424,11 @@ def start_lobby_timer(lobby, duration_seconds, callback):
     
     loop = tornado.ioloop.IOLoop.current()
     lobby["state"]["timer_end"] = loop.time() + duration_seconds
+    lobby["timer_callback"] = callback
     
     def wrapped_callback():
         lobby["timer_handle"] = None
+        lobby["timer_callback"] = None
         lobby["state"]["timer_end"] = 0
         callback()
 
@@ -433,6 +436,37 @@ def start_lobby_timer(lobby, duration_seconds, callback):
     
     # Broadcast timer update
     broadcast_to_lobby(lobby, "timer_update", {"remaining": duration_seconds})
+
+def extend_lobby_timer(lobby, extra_seconds):
+    if not lobby.get("timer_handle"):
+        return
+    loop = tornado.ioloop.IOLoop.current()
+    current_time = loop.time()
+    remaining = lobby["state"]["timer_end"] - current_time
+    if remaining <= 0:
+        return
+    
+    # Cancel old timeout
+    loop.remove_timeout(lobby["timer_handle"])
+    
+    # Re-schedule with new remaining time
+    new_remaining = remaining + extra_seconds
+    lobby["state"]["timer_end"] = current_time + new_remaining
+    
+    callback = lobby.get("timer_callback")
+    if not callback:
+        return
+        
+    def wrapped_callback():
+        lobby["timer_handle"] = None
+        lobby["timer_callback"] = None
+        lobby["state"]["timer_end"] = 0
+        callback()
+        
+    lobby["timer_handle"] = loop.add_timeout(current_time + new_remaining, wrapped_callback)
+    
+    # Broadcast timer update to all clients
+    broadcast_to_lobby(lobby, "timer_update", {"remaining": int(new_remaining)})
 
 def transition_to_theme_voting(lobby):
     cancel_lobby_timer(lobby)
@@ -736,7 +770,8 @@ class GameWebSocketHandler(tornado.websocket.WebSocketHandler):
                     }
                 },
                 "settings": {
-                    "challenge_time": 60 # default 60s
+                    "challenge_time": 60, # default 60s
+                    "correct_answer_bonus": 0 # default +0s
                 },
                 "state": {
                     "phase": "LOBBY",
@@ -754,7 +789,8 @@ class GameWebSocketHandler(tornado.websocket.WebSocketHandler):
                     "reviews": {},
                     "players_order": []
                 },
-                "timer_handle": None
+                "timer_handle": None,
+                "timer_callback": None
             }
             self.lobby_code = code
             SOCKETS_MAP[self] = {"player_id": self.player_id, "lobby_code": code}
@@ -817,6 +853,11 @@ class GameWebSocketHandler(tornado.websocket.WebSocketHandler):
             t = int(payload.get("challenge_time", 60))
             t = max(30, min(600, t)) # 30s to 10m bounds
             lobby["settings"]["challenge_time"] = t
+            
+            bonus = int(payload.get("correct_answer_bonus", 0))
+            bonus = max(0, min(10, bonus)) # 0s to 10s bounds
+            lobby["settings"]["correct_answer_bonus"] = bonus
+            
             broadcast_to_lobby(lobby, "state_update", get_lobby_state(lobby))
             
         elif msg_type == "start_game":
@@ -995,6 +1036,12 @@ class GameWebSocketHandler(tornado.websocket.WebSocketHandler):
                     "type": "item_validation_result",
                     "payload": {"item": word, "valid": True}
                 }))
+                
+                # Check for correct answer bonus and extend the timer
+                bonus = lobby["settings"].get("correct_answer_bonus", 0)
+                if bonus > 0:
+                    extend_lobby_timer(lobby, bonus)
+                    
                 broadcast_to_lobby(lobby, "state_update", get_lobby_state(lobby))
             else:
                 self.write_message(json.dumps({
