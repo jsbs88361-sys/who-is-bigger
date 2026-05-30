@@ -1,4 +1,4 @@
-import { renderAvatarSvg, BG_COLORS, BODY_COLORS, EYE_OPTIONS, MOUTH_OPTIONS, SHIRT_OPTIONS, ACCESSORY_OPTIONS } from './avatar.js';
+import { renderAvatarSvg, BG_COLORS, BODY_COLORS, EYE_OPTIONS, MOUTH_OPTIONS, SHIRT_OPTIONS, ACCESSORY_OPTIONS, EFFECT_OPTIONS } from './avatar.js';
 import { playSound } from './sound.js';
 
 // Helper to escape HTML to prevent XSS in chat/names
@@ -45,6 +45,10 @@ export function renderRegistrationScreen(container, avatarConfig, onRegister) {
     if (avatarConfig.shirt === undefined) {
         avatarConfig.shirt = 0;
     }
+    // Default effect if not set
+    if (avatarConfig.effect === undefined) {
+        avatarConfig.effect = 0;
+    }
 
     container.innerHTML = `
         <div class="game-title-logo bounce">КТО БОЛЬШЕ?</div>
@@ -87,6 +91,11 @@ export function renderRegistrationScreen(container, avatarConfig, onRegister) {
                             <button class="creator-arrow-btn" id="acc-prev">&lt;</button>
                             <span>АКСЕССУАР</span>
                             <button class="creator-arrow-btn" id="acc-next">&gt;</button>
+                        </div>
+                        <div class="creator-row">
+                            <button class="creator-arrow-btn" id="effect-prev">&lt;</button>
+                            <span>ЭФФЕКТ</span>
+                            <button class="creator-arrow-btn" id="effect-next">&gt;</button>
                         </div>
                     </div>
                     
@@ -164,6 +173,9 @@ export function renderRegistrationScreen(container, avatarConfig, onRegister) {
     container.querySelector('#acc-prev').onclick = () => { playSound.click(); avatarConfig.accessory = cycleIndex(ACCESSORY_OPTIONS.length, avatarConfig.accessory, -1); updatePreview(); };
     container.querySelector('#acc-next').onclick = () => { playSound.click(); avatarConfig.accessory = cycleIndex(ACCESSORY_OPTIONS.length, avatarConfig.accessory, 1); updatePreview(); };
 
+    container.querySelector('#effect-prev').onclick = () => { playSound.click(); avatarConfig.effect = cycleIndex(EFFECT_OPTIONS.length, avatarConfig.effect !== undefined ? avatarConfig.effect : 0, -1); updatePreview(); };
+    container.querySelector('#effect-next').onclick = () => { playSound.click(); avatarConfig.effect = cycleIndex(EFFECT_OPTIONS.length, avatarConfig.effect !== undefined ? avatarConfig.effect : 0, 1); updatePreview(); };
+
     container.querySelector('#btn-random-avatar').onclick = () => {
         playSound.click();
         Object.assign(avatarConfig, {
@@ -172,7 +184,8 @@ export function renderRegistrationScreen(container, avatarConfig, onRegister) {
             eyes: Math.floor(Math.random() * EYE_OPTIONS.length),
             mouth: Math.floor(Math.random() * MOUTH_OPTIONS.length),
             shirt: Math.floor(Math.random() * SHIRT_OPTIONS.length),
-            accessory: Math.floor(Math.random() * ACCESSORY_OPTIONS.length)
+            accessory: Math.floor(Math.random() * ACCESSORY_OPTIONS.length),
+            effect: Math.floor(Math.random() * EFFECT_OPTIONS.length)
         });
         updatePreview();
     };

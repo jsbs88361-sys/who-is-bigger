@@ -80,6 +80,34 @@ export const EYE_OPTIONS = [
         <path d="M56 47 q5 -7 10 0" fill="none" stroke="#2c2d42" stroke-width="4" stroke-linecap="round" />
         <path d="M36 49 q0 8 -4 14" fill="none" stroke="#9bf6ff" stroke-width="3" stroke-linecap="round" />
         <path d="M64 49 q0 8 4 14" fill="none" stroke="#9bf6ff" stroke-width="3" stroke-linecap="round" />
+     </g>`,
+
+    // 9: 4-pointed stars eyes
+    `<g>
+        <path d="M38 37 L40 43 L46 45 L40 47 L38 53 L36 47 L30 45 L36 43 Z" fill="#ffd166" stroke="#2c2d42" stroke-width="2.5" stroke-linejoin="round" />
+        <circle cx="36.5" cy="43.5" r="1.5" fill="#fff" />
+        <path d="M62 37 L64 43 L70 45 L64 47 L62 53 L60 47 L54 45 L60 43 Z" fill="#ffd166" stroke="#2c2d42" stroke-width="2.5" stroke-linejoin="round" />
+        <circle cx="60.5" cy="43.5" r="1.5" fill="#fff" />
+     </g>`,
+
+    // 10: Harry Potter Glasses & Lightning Scar
+    `<g>
+        <path d="M43 26 L47 31 L44 31 L48 37" fill="none" stroke="#d90429" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="38" cy="45" r="9" fill="none" stroke="#2c2d42" stroke-width="4.5" />
+        <circle cx="62" cy="45" r="9" fill="none" stroke="#2c2d42" stroke-width="4.5" />
+        <line x1="47" y1="45" x2="53" y2="45" stroke="#2c2d42" stroke-width="4.5" />
+        <path d="M29 45 L22 41 M71 45 L78 41" stroke="#2c2d42" stroke-width="3" stroke-linecap="round" />
+        <circle cx="39" cy="45" r="5" fill="#2c2d42" />
+        <circle cx="61" cy="45" r="5" fill="#2c2d42" />
+        <circle cx="37.5" cy="43.5" r="1.5" fill="#fff" />
+        <circle cx="59.5" cy="43.5" r="1.5" fill="#fff" />
+     </g>`,
+
+    // 11: Electric Lightning Eyes
+    `<g>
+        <path d="M33 41 L43 45 L38 46 L42 51 L32 47 L37 46 Z" fill="#ffd166" stroke="#2c2d42" stroke-width="2.5" stroke-linejoin="round" />
+        <path d="M57 41 L67 45 L62 46 L66 51 L56 47 L61 46 Z" fill="#ffd166" stroke="#2c2d42" stroke-width="2.5" stroke-linejoin="round" />
+        <path d="M28 42 L24 38 M72 42 L76 38" stroke="#ffd166" stroke-width="2" stroke-linecap="round" />
      </g>`
 ];
 
@@ -130,7 +158,38 @@ export const MOUTH_OPTIONS = [
      </g>`,
 
     // 8: Cat Mouth
-    `<path d="M43 62 q4 5 7 0 q3 5 7 0" fill="none" stroke="#2c2d42" stroke-width="4" stroke-linecap="round" opacity="0.9" />`
+    `<path d="M43 62 q4 5 7 0 q3 5 7 0" fill="none" stroke="#2c2d42" stroke-width="4" stroke-linecap="round" opacity="0.9" />`,
+
+    // 9: Smirk
+    `<path d="M48 60 q8 5 10 -4" fill="none" stroke="#2c2d42" stroke-width="4.5" stroke-linecap="round" />`,
+
+    // 10: Vampire Fangs Smile
+    `<g>
+        <path d="M40 60 q10 10 20 0 Z" fill="#800f2f" stroke="#2c2d42" stroke-width="4" stroke-linejoin="round" />
+        <path d="M44 60 l2 4 L48 60 Z" fill="#fff" />
+        <path d="M56 60 l-2 4 L52 60 Z" fill="#fff" />
+     </g>`,
+
+    // 11: Zip Mouth
+    `<g>
+        <line x1="40" y1="62" x2="60" y2="62" stroke="#2c2d42" stroke-width="4.5" stroke-linecap="round" />
+        <line x1="43" y1="60" x2="43" y2="64" stroke="#2c2d42" stroke-width="2" />
+        <line x1="47" y1="60" x2="47" y2="64" stroke="#2c2d42" stroke-width="2" />
+        <line x1="51" y1="60" x2="51" y2="64" stroke="#2c2d42" stroke-width="2" />
+        <line x1="55" y1="60" x2="55" y2="64" stroke="#2c2d42" stroke-width="2" />
+        <line x1="59" y1="60" x2="59" y2="64" stroke="#2c2d42" stroke-width="2" />
+     </g>`,
+
+    // 12: W-shaped Cute Mouth
+    `<path d="M43 61 q4 -3 7 0 q3 -3 7 0" fill="none" stroke="#2c2d42" stroke-width="4.5" stroke-linecap="round" />`,
+
+    // 13: Mouth with Rose
+    `<g>
+        <path d="M44 62 q6 5 12 0" fill="none" stroke="#2c2d42" stroke-width="3" stroke-linecap="round" />
+        <path d="M30 64 Q44 63 50 62" fill="none" stroke="#52b788" stroke-width="2.5" stroke-linecap="round" />
+        <path d="M33 64 L31 60" stroke="#52b788" stroke-width="2" />
+        <path d="M26 64 C24 60 30 58 30 64 C30 66 26 68 26 64 Z" fill="#d90429" stroke="#2c2d42" stroke-width="1.5" />
+     </g>`
 ];
 
 export const SHIRT_OPTIONS = [
@@ -170,6 +229,28 @@ export const SHIRT_OPTIONS = [
     // 6: Sailor Collar (blue stripes)
     `<g>
         <path d="M26 66 Q50 82 74 66 L68 82 Q50 86 32 82 Z" fill="#118ab2" stroke="#2c2d42" stroke-width="2" />
+     </g>`,
+
+    // 7: Patriot's Cape & Suit (Homelander)
+    `<g>
+        <path d="M20 64 C10 65 5 80 15 84 C25 84 25 75 28 68 Z" fill="#d90429" stroke="#2c2d42" stroke-width="2.5" />
+        <path d="M80 64 C90 65 95 80 85 84 C75 84 75 75 72 68 Z" fill="#d90429" stroke="#2c2d42" stroke-width="2.5" />
+        <path d="M14 69 C10 75 10 80 15 83" fill="none" stroke="#ffffff" stroke-width="2" />
+        <path d="M86 69 C90 75 90 80 85 83" fill="none" stroke="#ffffff" stroke-width="2" />
+        <path d="M26 66 Q50 82 74 66 L68 84 Q50 86 32 84 Z" fill="#0d47a1" stroke="#2c2d42" stroke-width="3" stroke-linejoin="round" />
+        <path d="M44 72 L47 70 L50 73 L53 70 L56 72 L50 76 Z" fill="#ffd166" stroke="#2c2d42" stroke-width="1.5" />
+        <path d="M22 62 Q30 58 34 68 Q24 72 22 62" fill="#ffd166" stroke="#2c2d42" stroke-width="2.5" stroke-linejoin="round" />
+        <path d="M78 62 Q70 58 66 68 Q76 72 78 62" fill="#ffd166" stroke="#2c2d42" stroke-width="2.5" stroke-linejoin="round" />
+        <path d="M38 60 Q50 72 62 60" fill="none" stroke="#d90429" stroke-width="3.5" stroke-linecap="round" />
+     </g>`,
+
+    // 8: Fox Tail & Nose
+    `<g>
+        <path d="M76 68 C88 64 96 48 90 40 C84 32 78 48 70 60 Z" fill="#fb8500" stroke="#2c2d42" stroke-width="3" stroke-linejoin="round" />
+        <path d="M90 40 C88 36 84 32 80 34 C78 40 82 46 84 45 Z" fill="#ffffff" stroke="#2c2d42" stroke-width="2" stroke-linejoin="round" />
+        <ellipse cx="50" cy="62" rx="10" ry="7" fill="#ffffff" stroke="#2c2d42" stroke-width="3" />
+        <polygon points="50,57 46,54 54,54" fill="#2c2d42" />
+        <path d="M50 57 L50 63 Q50 66 47 66 M50 63 Q50 66 53 66" fill="none" stroke="#2c2d42" stroke-width="2" stroke-linecap="round" />
      </g>`
 ];
 
@@ -313,6 +394,140 @@ export const ACCESSORY_OPTIONS = [
         
         <circle cx="72" cy="23" r="4" fill="#ffb703" stroke="#2c2d42" stroke-width="2" />
         <circle cx="72" cy="23" r="1.5" fill="#fff" />
+     </g>`,
+
+    // 14: Fox Ears
+    `<g>
+        <!-- Left Fox Ear -->
+        <path d="M26 23 L22 10 L38 20 Z" fill="#fb8500" stroke="#2c2d42" stroke-width="4" stroke-linejoin="round" />
+        <path d="M28 21 L25 13 L35 19 Z" fill="#fff" />
+        <path d="M29 20 L27 15 L33 19 Z" fill="#ffb5a7" />
+        <!-- Right Fox Ear -->
+        <path d="M74 23 L78 10 L62 20 Z" fill="#fb8500" stroke="#2c2d42" stroke-width="4" stroke-linejoin="round" />
+        <path d="M72 21 L75 13 L65 19 Z" fill="#fff" />
+        <path d="M71 20 L73 15 L67 19 Z" fill="#ffb5a7" />
+     </g>`,
+
+    // 15: Iron Man Mask
+    `<g>
+        <rect x="20" y="24" width="60" height="58" rx="28" fill="#d90429" stroke="#2c2d42" stroke-width="4.5" />
+        <path d="M28 42 C28 32 72 32 72 42 C72 54 66 74 50 74 C34 74 28 54 28 42 Z" fill="#ffd166" stroke="#2c2d42" stroke-width="3.5" stroke-linejoin="round" />
+        <path d="M42 34 L50 38 L58 34" fill="none" stroke="#2c2d42" stroke-width="2.5" />
+        <polygon points="34,45 46,47 45,50 35,49" fill="#9bf6ff" stroke="#2c2d42" stroke-width="2" />
+        <polygon points="66,45 54,47 55,50 65,49" fill="#9bf6ff" stroke="#2c2d42" stroke-width="2" />
+        <path d="M42 62 H58" stroke="#2c2d42" stroke-width="3" stroke-linecap="round" />
+        <path d="M40 58 L44 64 H56 L60 58" fill="none" stroke="#2c2d42" stroke-width="2" />
+     </g>`,
+
+    // 16: Scream Mask
+    `<g>
+        <rect x="18" y="20" width="64" height="66" rx="32" fill="#2c2d42" stroke="#2c2d42" stroke-width="2" />
+        <path d="M28 36 C28 26 72 26 72 36 C72 52 64 78 50 78 C36 78 28 52 28 36 Z" fill="#f0f0f0" stroke="#2c2d42" stroke-width="4.5" stroke-linejoin="round" />
+        <path d="M34 43 C34 38 44 40 44 49 C44 51 34 51 34 43 Z" fill="#2c2d42" />
+        <path d="M66 43 C66 38 56 40 56 49 C56 51 66 51 66 43 Z" fill="#2c2d42" />
+        <path d="M48 53 L46 57 M52 53 L54 57" stroke="#2c2d42" stroke-width="2.5" stroke-linecap="round" />
+        <ellipse cx="50" cy="66" rx="5" ry="9" fill="#2c2d42" />
+     </g>`,
+
+    // 17: Michael Myers Mask
+    `<g>
+        <path d="M21 30 Q50 10 79 30 Q50 18 21 30" fill="#582f0e" stroke="#2c2d42" stroke-width="4" stroke-linejoin="round" />
+        <rect x="23" y="28" width="54" height="54" rx="27" fill="#e2eafc" stroke="#2c2d42" stroke-width="4.5" />
+        <ellipse cx="38" cy="48" rx="6" ry="4.5" fill="#2c2d42" />
+        <circle cx="38" cy="48" r="1.5" fill="#fff" />
+        <ellipse cx="62" cy="48" rx="6" ry="4.5" fill="#2c2d42" />
+        <circle cx="62" cy="48" r="1.5" fill="#fff" />
+        <path d="M31 41 Q38 39 45 43" fill="none" stroke="#2c2d42" stroke-width="3" stroke-linecap="round" />
+        <path d="M69 41 Q62 39 55 43" fill="none" stroke="#2c2d42" stroke-width="3" stroke-linecap="round" />
+        <path d="M50 47 L48 57 H52" fill="none" stroke="#2c2d42" stroke-width="2" stroke-linejoin="round" />
+        <line x1="43" y1="65" x2="57" y2="65" stroke="#2c2d42" stroke-width="3.5" stroke-linecap="round" />
+     </g>`,
+
+    // 18: Jason Voorhees Mask (вурхиза)
+    `<g>
+        <rect x="24" y="26" width="52" height="56" rx="26" fill="#f8f9fa" stroke="#2c2d42" stroke-width="4.5" />
+        <circle cx="38" cy="46" r="5" fill="#2c2d42" />
+        <circle cx="62" cy="46" r="5" fill="#2c2d42" />
+        <polygon points="50,37 46,30 54,30" fill="#d90429" />
+        <polygon points="34,56 40,53 35,50" fill="#d90429" />
+        <polygon points="66,56 60,53 65,50" fill="#d90429" />
+        <circle cx="50" cy="42" r="1" fill="#2c2d42" />
+        <circle cx="50" cy="47" r="1" fill="#2c2d42" />
+        <circle cx="50" cy="52" r="1" fill="#2c2d42" />
+        <circle cx="45" cy="50" r="1" fill="#2c2d42" />
+        <circle cx="55" cy="50" r="1" fill="#2c2d42" />
+        <circle cx="45" cy="54" r="1" fill="#2c2d42" />
+        <circle cx="55" cy="54" r="1" fill="#2c2d42" />
+        <circle cx="50" cy="60" r="1" fill="#2c2d42" />
+        <circle cx="47" cy="64" r="1" fill="#2c2d42" />
+        <circle cx="53" cy="64" r="1" fill="#2c2d42" />
+        <path d="M24 44 H18 M76 44 H82" stroke="#2c2d42" stroke-width="4" />
+     </g>`,
+
+    // 19: Minecraft Creeper Head
+    `<g>
+        <rect x="22" y="16" width="56" height="56" rx="4" fill="#2a9d8f" stroke="#2c2d42" stroke-width="4.5" />
+        <rect x="30" y="32" width="10" height="10" fill="#2c2d42" />
+        <rect x="60" y="32" width="10" height="10" fill="#2c2d42" />
+        <path d="M44 42 h12 v12 h-4 v-6 h-4 v6 h-4 z" fill="#2c2d42" />
+     </g>`,
+
+    // 20: Shrek Ogre Ears
+    `<g>
+        <path d="M24 36 C14 36 8 28 14 26 C18 25 22 32 24 36" fill="#8dc63f" stroke="#2c2d42" stroke-width="3" stroke-linejoin="round" />
+        <ellipse cx="14" cy="27" rx="2" ry="4" fill="#5c8a1b" transform="rotate(-15 14 27)" />
+        <path d="M76 36 C86 36 92 28 86 26 C82 25 78 32 76 36" fill="#8dc63f" stroke="#2c2d42" stroke-width="3" stroke-linejoin="round" />
+        <ellipse cx="86" cy="27" rx="2" ry="4" fill="#5c8a1b" transform="rotate(15 86 27)" />
+     </g>`
+];
+
+export const EFFECT_OPTIONS = [
+    // 0: Classic Blush (rosy cheeks)
+    `<circle cx="28" cy="54" r="4.5" fill="#ff758f" opacity="0.65" />
+     <circle cx="72" cy="54" r="4.5" fill="#ff758f" opacity="0.65" />`,
+
+    // 1: None
+    ``,
+
+    // 2: Anime Sweat Drop
+    `<path d="M72 48 q3 0 3 4 q0 4 -3 8 q-3 -4 -3 -8 q0 -4 3 -4 Z" fill="#9bf6ff" stroke="#2c2d42" stroke-width="1.5" />`,
+
+    // 3: Bandage (cross plaster patch)
+    `<g>
+        <path d="M20 54 L28 54" stroke="#fceade" stroke-width="4.5" stroke-linecap="round" />
+        <path d="M24 50 L24 58" stroke="#fceade" stroke-width="4.5" stroke-linecap="round" />
+        <path d="M20 54 L28 54" stroke="#2c2d42" stroke-width="1" opacity="0.5" />
+        <path d="M24 50 L24 58" stroke="#2c2d42" stroke-width="1" opacity="0.5" />
+     </g>`,
+
+    // 4: Battle Scar
+    `<g>
+        <path d="M22 50 L28 58" stroke="#ef476f" stroke-width="2" stroke-linecap="round" />
+        <path d="M24 49 L30 57" stroke="#ef476f" stroke-width="2" stroke-linecap="round" />
+     </g>`,
+
+    // 5: Fox Whiskers
+    `<g>
+        <line x1="26" y1="52" x2="16" y2="50" stroke="#2c2d42" stroke-width="2" stroke-linecap="round" />
+        <line x1="27" y1="54" x2="15" y2="54" stroke="#2c2d42" stroke-width="2" stroke-linecap="round" />
+        <line x1="26" y1="56" x2="16" y2="58" stroke="#2c2d42" stroke-width="2" stroke-linecap="round" />
+        <line x1="74" y1="52" x2="84" y2="50" stroke="#2c2d42" stroke-width="2" stroke-linecap="round" />
+        <line x1="73" y1="54" x2="85" y2="54" stroke="#2c2d42" stroke-width="2" stroke-linecap="round" />
+        <line x1="74" y1="56" x2="84" y2="58" stroke="#2c2d42" stroke-width="2" stroke-linecap="round" />
+     </g>`,
+
+    // 6: Star blush
+    `<g>
+        <path d="M26 51 l1 2 l2 1 l-2 1 l-1 2 l-1 -2 l-2 -1 l2 -1 z" fill="#ffd166" />
+        <path d="M74 51 l1 2 l2 1 l-2 1 l-1 2 l-1 -2 l-2 -1 l2 -1 z" fill="#ffd166" />
+     </g>`,
+
+    // 7: Embarrassed (Anime lines)
+    `<g>
+        <line x1="24" y1="51" x2="28" y2="57" stroke="#ff758f" stroke-width="2" stroke-linecap="round" />
+        <line x1="28" y1="51" x2="32" y2="57" stroke="#ff758f" stroke-width="2" stroke-linecap="round" />
+        <line x1="68" y1="51" x2="72" y2="57" stroke="#ff758f" stroke-width="2" stroke-linecap="round" />
+        <line x1="72" y1="51" x2="76" y2="57" stroke="#ff758f" stroke-width="2" stroke-linecap="round" />
      </g>`
 ];
 
@@ -323,7 +538,8 @@ export function getRandomAvatarConfig() {
         eyes: Math.floor(Math.random() * EYE_OPTIONS.length),
         mouth: Math.floor(Math.random() * MOUTH_OPTIONS.length),
         shirt: Math.floor(Math.random() * SHIRT_OPTIONS.length),
-        accessory: Math.floor(Math.random() * ACCESSORY_OPTIONS.length)
+        accessory: Math.floor(Math.random() * ACCESSORY_OPTIONS.length),
+        effect: Math.floor(Math.random() * EFFECT_OPTIONS.length)
     };
 }
 
@@ -331,9 +547,16 @@ export function renderAvatarSvg(config) {
     const bg = config.bgColor || "#FFADAD";
     const body = config.bodyColor || "#F4A261";
     const eyes = EYE_OPTIONS[config.eyes] || EYE_OPTIONS[0];
-    const mouth = MOUTH_OPTIONS[config.mouth] || MOUTH_OPTIONS[0];
     const shirt = SHIRT_OPTIONS[config.shirt || 0] || SHIRT_OPTIONS[0];
     const accessory = ACCESSORY_OPTIONS[config.accessory] || ACCESSORY_OPTIONS[0];
+    
+    // Hide mouth if Fox Nose (shirt 8) or if wearing a full face mask (accessory 15-19)
+    const hideMouth = (parseInt(config.shirt) === 8) || (parseInt(config.accessory) >= 15 && parseInt(config.accessory) <= 19);
+    const mouth = hideMouth ? "" : (MOUTH_OPTIONS[config.mouth] || MOUTH_OPTIONS[0]);
+
+    // Hide cheek blush under masks (accessory 15-19)
+    const hideEffect = (parseInt(config.accessory) >= 15 && parseInt(config.accessory) <= 19);
+    const effect = hideEffect ? "" : (EFFECT_OPTIONS[config.effect !== undefined ? config.effect : 0] || EFFECT_OPTIONS[0]);
 
     return `
     <svg viewBox="0 0 100 100" class="avatar-svg" style="width: 100%; height: 100%; display: block; border-radius: 50%;">
@@ -377,9 +600,8 @@ export function renderAvatarSvg(config) {
         <!-- White Glossy Reflection Highlight -->
         <ellipse cx="36" cy="34" rx="10" ry="5" fill="#ffffff" opacity="0.3" transform="rotate(-25 36 34)" />
 
-        <!-- Cheeks Blush -->
-        <circle cx="28" cy="54" r="4.5" fill="#ff758f" opacity="0.65" />
-        <circle cx="72" cy="54" r="4.5" fill="#ff758f" opacity="0.65" />
+        <!-- Cheeks Blush / Effect -->
+        ${effect}
         
         <!-- Eyes -->
         ${eyes}
