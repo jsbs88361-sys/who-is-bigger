@@ -10,6 +10,31 @@ from themes import THEME_DATABASE
 
 THEMES = list(THEME_DATABASE.keys())
 
+def levenshtein_distance(s1, s2):
+    if len(s1) < len(s2):
+        return levenshtein_distance(s2, s1)
+    if len(s2) == 0:
+        return len(s1)
+    previous_row = range(len(s2) + 1)
+    for i, c1 in enumerate(s1):
+        current_row = [i + 1]
+        for j, c2 in enumerate(s2):
+            insertions = previous_row[j + 1] + 1
+            deletions = current_row[j] + 1
+            substitutions = previous_row[j] + (c1 != c2)
+            current_row.append(min(insertions, deletions, substitutions))
+        previous_row = current_row
+    return previous_row[-1]
+
+def get_allowed_distance(target_word):
+    length = len(target_word)
+    if length <= 4:
+        return 0
+    elif length <= 8:
+        return 1
+    else:
+        return 2
+
 def normalize_word(word):
     if not word:
         return ""
@@ -893,22 +918,46 @@ class GameWebSocketHandler(tornado.websocket.WebSocketHandler):
             matched_indices = set()
             for existing in current_items:
                 if existing["valid"]:
-                    norm_existing = normalize_word(existing["item"])
-                    for idx, alias_set in enumerate(normalized_db):
-                        if norm_existing in alias_set:
-                            matched_indices.add(idx)
-                            break
+                    db_idx = existing.get("db_idx", -1)
+                    if db_idx != -1:
+                        matched_indices.add(db_idx)
+                    else:
+                        norm_existing = normalize_word(existing["item"])
+                        for idx_db, alias_set in enumerate(normalized_db):
+                            if norm_existing in alias_set:
+                                matched_indices.add(idx_db)
+                                break
                             
             norm_word = normalize_word(word)
             matched = False
-            for idx, alias_set in enumerate(normalized_db):
-                if idx in matched_indices:
+            matched_idx = -1
+            
+            # 1. Try exact match first
+            for idx_db, alias_set in enumerate(normalized_db):
+                if idx_db in matched_indices:
                     continue
                 if norm_word in alias_set:
                     matched = True
+                    matched_idx = idx_db
                     break
                     
+            # 2. Try fuzzy match if no exact match found
+            if not matched:
+                best_distance = 999
+                for idx_db, alias_set in enumerate(normalized_db):
+                    if idx_db in matched_indices:
+                        continue
+                    for alias in alias_set:
+                        dist = levenshtein_distance(norm_word, alias)
+                        allowed = get_allowed_distance(alias)
+                        if dist <= allowed and dist < best_distance:
+                            best_distance = dist
+                            matched_idx = idx_db
+                if matched_idx != -1:
+                    matched = True
+                    
             if matched:
+                idx = matched_idx
                 if theme == "Игры на ПК и консолях":
                     # Check franchise limit
                     matched_std_name = db_items[idx][0]
@@ -917,12 +966,13 @@ class GameWebSocketHandler(tornado.websocket.WebSocketHandler):
                     franchise_count = 0
                     for existing in current_items:
                         if existing["valid"]:
-                            existing_norm = normalize_word(existing["item"])
-                            existing_idx = -1
-                            for e_idx, alias_set in enumerate(normalized_db):
-                                if existing_norm in alias_set:
-                                    existing_idx = e_idx
-                                    break
+                            existing_idx = existing.get("db_idx", -1)
+                            if existing_idx == -1:
+                                existing_norm = normalize_word(existing["item"])
+                                for e_idx, alias_set in enumerate(normalized_db):
+                                    if existing_norm in alias_set:
+                                        existing_idx = e_idx
+                                        break
                             if existing_idx != -1:
                                 existing_std_name = db_items[existing_idx][0]
                                 existing_franchise = get_game_franchise(existing_std_name)
@@ -940,7 +990,7 @@ class GameWebSocketHandler(tornado.websocket.WebSocketHandler):
                         }))
                         return
 
-                lobby["state"]["challenge_items"].append({"item": word, "valid": True})
+                lobby["state"]["challenge_items"].append({"item": word, "valid": True, "db_idx": idx})
                 self.write_message(json.dumps({
                     "type": "item_validation_result",
                     "payload": {"item": word, "valid": True}
