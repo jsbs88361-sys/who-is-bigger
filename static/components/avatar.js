@@ -241,7 +241,6 @@ export const SHIRT_OPTIONS = [
         <path d="M44 72 L47 70 L50 73 L53 70 L56 72 L50 76 Z" fill="#ffd166" stroke="#2c2d42" stroke-width="1.5" />
         <path d="M22 62 Q30 58 34 68 Q24 72 22 62" fill="#ffd166" stroke="#2c2d42" stroke-width="2.5" stroke-linejoin="round" />
         <path d="M78 62 Q70 58 66 68 Q76 72 78 62" fill="#ffd166" stroke="#2c2d42" stroke-width="2.5" stroke-linejoin="round" />
-        <path d="M38 60 Q50 72 62 60" fill="none" stroke="#d90429" stroke-width="3.5" stroke-linecap="round" />
      </g>`,
 
     // 8: Fox Tail & Nose
@@ -478,6 +477,15 @@ export const ACCESSORY_OPTIONS = [
         <ellipse cx="14" cy="27" rx="2" ry="4" fill="#5c8a1b" transform="rotate(-15 14 27)" />
         <path d="M76 36 C86 36 92 28 86 26 C82 25 78 32 76 36" fill="#8dc63f" stroke="#2c2d42" stroke-width="3" stroke-linejoin="round" />
         <ellipse cx="86" cy="27" rx="2" ry="4" fill="#5c8a1b" transform="rotate(15 86 27)" />
+     </g>`,
+
+    // 21: Patriot's Hair (Homelander)
+    `<g>
+        <!-- Blonde styled hair (Homelander) -->
+        <path d="M22 34 C16 30 18 20 28 16 C38 12 62 12 72 16 C82 20 84 30 78 34" fill="#ffd166" stroke="#2c2d42" stroke-width="4.5" stroke-linejoin="round" />
+        <path d="M24 32 C28 20 40 16 50 18 C60 16 72 20 76 32 C70 24 60 22 50 24 C40 22 30 24 24 32 Z" fill="#ffe3a8" stroke="#2c2d42" stroke-width="3" stroke-linejoin="round" />
+        <path d="M32 24 C40 18 45 18 50 20" fill="none" stroke="#ffd166" stroke-width="2" />
+        <path d="M68 24 C60 18 55 18 50 20" fill="none" stroke="#ffd166" stroke-width="2" />
      </g>`
 ];
 
