@@ -21,6 +21,263 @@ def normalize_word(word):
     w = re.sub(r'[^a-zа-я0-9+#]', '', w)
     return w
 
+def get_game_franchise(name):
+    # Lowercase & strip
+    n = name.lower().strip()
+    
+    # Strip leading "the "
+    if n.startswith("the "):
+        n = n[4:]
+        
+    # Standard substitutions for punctuation/spelling
+    n = n.replace("s.t.a.l.k.e.r.", "stalker")
+    n = n.replace("half-life", "half life")
+    n = n.replace("assassin's creed", "assassins creed")
+    n = n.replace("baldur's gate", "baldurs gate")
+    n = n.replace("plants vs. zombies", "plants vs zombies")
+    
+    # Replace punctuation with spaces
+    n = re.sub(r'[^a-z0-9а-я\s]', ' ', n)
+    n = " ".join(n.split())
+    
+    # List of known multi-word prefixes that denote a series/franchise
+    prefixes = [
+        "far cry",
+        "grand theft auto",
+        "call of duty",
+        "assassins creed",
+        "need for speed",
+        "resident evil",
+        "silent hill",
+        "tomb raider",
+        "devil may cry",
+        "half life",
+        "left 4 dead",
+        "mass effect",
+        "red dead redemption",
+        "elder scrolls",
+        "battlefield",
+        "star wars",
+        "mortal kombat",
+        "dark souls",
+        "borderlands",
+        "civilization",
+        "diablo",
+        "warcraft",
+        "starcraft",
+        "doom",
+        "quake",
+        "wolfenstein",
+        "witcher",
+        "super mario",
+        "mario",
+        "legend of zelda",
+        "zelda",
+        "final fantasy",
+        "monster hunter",
+        "metal gear",
+        "god of war",
+        "halo",
+        "gears of war",
+        "forza horizon",
+        "forza",
+        "gran turismo",
+        "street fighter",
+        "tekken",
+        "sims",
+        "hitman",
+        "max payne",
+        "splinter cell",
+        "watch dogs",
+        "cyberpunk",
+        "dragon age",
+        "dead space",
+        "bioshock",
+        "crysis",
+        "dishonored",
+        "deus ex",
+        "payday",
+        "just cause",
+        "cossacks",
+        "heroes of might and magic",
+        "might and magic",
+        "total war",
+        "age of empires",
+        "command and conquer",
+        "command & conquer",
+        "serious sam",
+        "postal",
+        "duke nukem",
+        "team fortress",
+        "counter strike",
+        "portal",
+        "gta",
+        "cod",
+        "nfs",
+        "rdr",
+        "dmc",
+        "tes",
+        "mk",
+        "fifa",
+        "pes",
+        "ea sports fc",
+        "fallout",
+        "metro",
+        "stalker",
+        "detroit",
+        "alan wake",
+        "mafia",
+        "little nightmares",
+        "hades",
+        "plants vs zombies",
+        "angry birds",
+        "subway surfers",
+        "temple run",
+        "cut the rope",
+        "doodle jump",
+        "fruit ninja",
+        "jetpack joyride",
+        "clash of clans",
+        "clash royale",
+        "among us",
+        "fall guys",
+        "roblox",
+        "minecraft",
+        "dota",
+        "league of legends",
+        "world of tanks",
+        "world of warcraft",
+        "valorant",
+        "apex legends",
+        "fortnite",
+        "pubg",
+        "rust",
+        "ark",
+        "dayz",
+        "terraria",
+        "starbound",
+        "valheim",
+        "forest",
+        "subnautica",
+        "dying light",
+        "outlast",
+        "amnesia",
+        "soma",
+        "dead by daylight",
+        "phasmophobia",
+        "lethal company",
+        "binding of isaac",
+        "enter the gungeon",
+        "dead cells",
+        "hades",
+        "slay the spire",
+        "vampire survivors",
+        "risk of rain",
+        "hotline miami",
+        "katana zero",
+        "ruiner",
+        "ghostrunner",
+        "superhot",
+        "talos principle",
+        "witness",
+        "limbo",
+        "inside",
+        "little nightmares",
+        "ori and the",
+        "ori",
+        "cuphead",
+        "celeste",
+        "hollow knight",
+        "shovel knight",
+        "rogue legacy",
+        "undertale",
+        "deltarune",
+        "omori",
+        "disco elysium",
+        "baldurs gate",
+        "divinity original sin",
+        "divinity",
+        "pillars of eternity",
+        "pathfinder",
+        "wasteland",
+        "outer worlds",
+        "starfield",
+        "oblivion",
+        "morrowind",
+        "gothic",
+        "risen",
+        "elex",
+        "fable",
+        "kingdom come",
+        "mount and blade",
+        "crusader kings",
+        "europa universalis",
+        "hearts of iron",
+        "victoria",
+        "stellaris",
+        "age of mythology",
+        "rise of nations",
+        "empire earth",
+        "stronghold",
+        "settlers",
+        "anno",
+        "tropico",
+        "simcity",
+        "cities skylines",
+        "transport fever",
+        "railway empire",
+        "two point",
+        "rollercoaster tycoon",
+        "planet coaster",
+        "planet zoo",
+        "zoo tycoon",
+        "jurassic world",
+        "theme park",
+        "dungeon keeper",
+        "evil genius",
+        "spore",
+        "singles",
+        "virtual villagers",
+        "second life",
+        "imvu",
+        "habbo",
+        "club penguin",
+        "animal crossing",
+        "stardew valley",
+        "harvest moon",
+        "story of seasons",
+        "rune factory",
+        "my time at",
+        "disney dreamlight",
+        "slime rancher",
+        "dave the diver",
+        "abzu",
+        "journey",
+        "flower",
+        "death stranding"
+    ]
+    
+    # Sort prefixes by length descending so that we match the longest prefix first!
+    prefixes = sorted(list(set(prefixes)), key=len, reverse=True)
+    
+    for prefix in prefixes:
+        # Match prefix at the beginning followed by a space, digit, punctuation, or end of string
+        # e.g. "far cry 3" starts with "far cry"
+        if n.startswith(prefix):
+            # Check if it is followed by space, digit, colon, hyphen, or end of string
+            rest = n[len(prefix):]
+            if not rest or rest[0] in " 0123456789:-.#'\"":
+                return prefix
+                
+    # If no prefix matched, split by space/punctuation and take the first word as the franchise
+    # But clean up first word
+    words = re.findall(r'[a-zа-я0-9]+', n)
+    if words:
+        return words[0]
+        
+    return n
+
+
 def validate_challenge_items(theme_name, items):
     db_items = THEME_DATABASE.get(theme_name, [])
     # Normalize all database entries: list of sets of normalized aliases
@@ -652,6 +909,37 @@ class GameWebSocketHandler(tornado.websocket.WebSocketHandler):
                     break
                     
             if matched:
+                if theme == "Игры на ПК и консолях":
+                    # Check franchise limit
+                    matched_std_name = db_items[idx][0]
+                    matched_franchise = get_game_franchise(matched_std_name)
+                    
+                    franchise_count = 0
+                    for existing in current_items:
+                        if existing["valid"]:
+                            existing_norm = normalize_word(existing["item"])
+                            existing_idx = -1
+                            for e_idx, alias_set in enumerate(normalized_db):
+                                if existing_norm in alias_set:
+                                    existing_idx = e_idx
+                                    break
+                            if existing_idx != -1:
+                                existing_std_name = db_items[existing_idx][0]
+                                existing_franchise = get_game_franchise(existing_std_name)
+                                if existing_franchise == matched_franchise:
+                                    franchise_count += 1
+                                    
+                    if franchise_count >= 2:
+                        self.write_message(json.dumps({
+                            "type": "item_validation_result",
+                            "payload": {
+                                "item": word,
+                                "valid": False,
+                                "reason": f"Максимум 2 части одной серии ({matched_franchise.upper()})!"
+                            }
+                        }))
+                        return
+
                 lobby["state"]["challenge_items"].append({"item": word, "valid": True})
                 self.write_message(json.dumps({
                     "type": "item_validation_result",

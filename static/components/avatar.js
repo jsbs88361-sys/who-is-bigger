@@ -136,6 +136,99 @@ export const ACCESSORY_OPTIONS = [
         <rect x="48.5" y="16.5" width="3" height="3" rx="1" fill="#fff" />
         <line x1="44" y1="10" x2="56" y2="18" stroke="#fff" stroke-width="1.5" />
         <line x1="56" y1="10" x2="44" y2="18" stroke="#fff" stroke-width="1.5" />
+     </g>`,
+     
+    // 6: Chef Hat
+    `<g>
+        <!-- Chef hat base -->
+        <path d="M34 26 h32 v-5 h-32 z" fill="#e0e0e0" stroke="#2c2d42" stroke-width="4" stroke-linejoin="round" />
+        <!-- Chef hat puff -->
+        <path d="M32 21 q-4 -12 8 -12 q6 0 10 3 q4 -3 10 -3 q12 0 8 12 z" fill="#ffffff" stroke="#2c2d42" stroke-width="4.5" stroke-linejoin="round" />
+     </g>`,
+     
+    // 7: Cowboy Hat
+    `<g>
+        <!-- Crown -->
+        <path d="M28 26 q5 -16 22 -16 q17 0 22 16 z" fill="#7f5539" stroke="#2c2d42" stroke-width="4" stroke-linejoin="round" />
+        <!-- Band -->
+        <path d="M29 25 q21 3 42 0 L71 27 q-21 3 -42 0 z" fill="#ffd166" stroke="#2c2d42" stroke-width="1.5" />
+        <!-- Brim (curved up on sides) -->
+        <path d="M12 28 q38 -10 76 0 q-10 8 -76 0 z" fill="#9c6644" stroke="#2c2d42" stroke-width="4" stroke-linejoin="round" />
+     </g>`,
+     
+    // 8: Viking Helmet with Horns
+    `<g>
+        <!-- Left Horn -->
+        <path d="M29 24 q-14 -12 -12 -24 q8 4 6 18 z" fill="#ffffff" stroke="#2c2d42" stroke-width="4" stroke-linejoin="round" />
+        <!-- Right Horn -->
+        <path d="M71 24 q14 -12 12 -24 q-8 4 -6 18 z" fill="#ffffff" stroke="#2c2d42" stroke-width="4" stroke-linejoin="round" />
+        <!-- Helmet Dome -->
+        <path d="M26 28 q24 -18 48 0 z" fill="#b8c0ff" stroke="#2c2d42" stroke-width="4.5" />
+        <!-- Nose guard / center strip -->
+        <path d="M47 16 h6 v12 h-6 z" fill="#8d99ae" stroke="#2c2d42" stroke-width="3" />
+     </g>`,
+     
+    // 9: Wizard / Witch Hat
+    `<g>
+        <!-- Hat Cone -->
+        <path d="M28 26 L50 -4 L72 26 Z" fill="#240046" stroke="#2c2d42" stroke-width="4.5" stroke-linejoin="round" />
+        <!-- Star decoration -->
+        <path d="M50 8 l1.5 2.5 l2.5 0.5 l-2 2 l0.5 2.5 l-2.5 -1.5 l-2.5 1.5 l0.5 -2.5 l-2 -2 l2.5 -0.5 z" fill="#ffd166" />
+        <!-- Brim -->
+        <ellipse cx="50" cy="27" rx="34" ry="4" fill="#3d348b" stroke="#2c2d42" stroke-width="4.5" />
+     </g>`,
+     
+    // 10: Santa Hat
+    `<g>
+        <!-- Red Cone -->
+        <path d="M30 26 Q32 4 52 4 Q66 4 72 14 L62 26 Z" fill="#d90429" stroke="#2c2d42" stroke-width="4.5" stroke-linejoin="round" />
+        <!-- White Pom-pom -->
+        <circle cx="74" cy="14" r="5" fill="#ffffff" stroke="#2c2d42" stroke-width="3" />
+        <!-- Fluffy Base -->
+        <rect x="25" y="22" width="50" height="7" rx="3.5" fill="#ffffff" stroke="#2c2d42" stroke-width="4" />
+     </g>`,
+     
+    // 11: Angel Halo
+    `<g>
+        <!-- Support beams -->
+        <line x1="40" y1="10" x2="40" y2="20" stroke="#ffd166" stroke-width="2" opacity="0.6" />
+        <line x1="60" y1="10" x2="60" y2="20" stroke="#ffd166" stroke-width="2" opacity="0.6" />
+        <!-- Glowing Halo -->
+        <ellipse cx="50" cy="9" rx="18" ry="4" fill="none" stroke="#fff3b0" stroke-width="5" opacity="0.95" />
+        <ellipse cx="50" cy="9" rx="18" ry="4" fill="none" stroke="#ffffff" stroke-width="1.5" />
+     </g>`,
+     
+    // 12: Detective Hat (Deerstalker)
+    `<g>
+        <!-- Cap dome -->
+        <path d="M26 28 q24 -18 48 0 z" fill="#8c7853" stroke="#2c2d42" stroke-width="4" />
+        <!-- Left flap / visor -->
+        <path d="M26 28 q-8 2 -12 -3 q6 -5 12 3" fill="#6f5e3b" stroke="#2c2d42" stroke-width="3.5" stroke-linejoin="round" />
+        <!-- Right flap / visor -->
+        <path d="M74 28 q8 2 12 -3 q-6 -5 -12 3" fill="#6f5e3b" stroke="#2c2d42" stroke-width="3.5" stroke-linejoin="round" />
+        <!-- Top bow -->
+        <path d="M47 18 q3 -4 6 0 q-3 4 -6 0" fill="#fff" stroke="#2c2d42" stroke-width="2.5" />
+     </g>`,
+     
+    // 13: Flower Crown
+    `<g>
+        <!-- Vine -->
+        <path d="M24 25 q26 -8 52 0" fill="none" stroke="#52b788" stroke-width="3.5" stroke-linecap="round" />
+        <!-- Flowers -->
+        <circle cx="28" cy="23" r="4" fill="#ffb703" stroke="#2c2d42" stroke-width="2" />
+        <circle cx="28" cy="23" r="1.5" fill="#fff" />
+        
+        <circle cx="39" cy="21" r="5.5" fill="#ffb5a7" stroke="#2c2d42" stroke-width="2" />
+        <circle cx="39" cy="21" r="2" fill="#fec5bb" />
+        
+        <circle cx="50" cy="20" r="5" fill="#bde0fe" stroke="#2c2d42" stroke-width="2" />
+        <circle cx="50" cy="20" r="1.5" fill="#fff" />
+        
+        <circle cx="61" cy="21" r="5.5" fill="#ffb5a7" stroke="#2c2d42" stroke-width="2" />
+        <circle cx="61" cy="21" r="2" fill="#fec5bb" />
+        
+        <circle cx="72" cy="23" r="4" fill="#ffb703" stroke="#2c2d42" stroke-width="2" />
+        <circle cx="72" cy="23" r="1.5" fill="#fff" />
      </g>`
 ];
 
